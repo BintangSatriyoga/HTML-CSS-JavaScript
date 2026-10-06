@@ -102,5 +102,38 @@ function prosesStep3() {
     document.getElementById('step4').classList.remove('hidden');
 }
 
+// Memproses & Validasi Email
+function prosesStep4() {
+    const emailInput = document.getElementById('inputEmail').value.trim();
+
+    // Validasi Format Email Standar
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (emailInput === '') {
+        alert('Error: Email tidak boleh kosong!');
+        return;
+    }
+
+    if (!emailPattern.test(emailInput)) {
+        alert('Error: Format email tidak valid! Contoh yang benar: nama@domain.com');
+        return;
+    }
+
+    dataForm.email = emailInput;
+
+    // Input Email
+    document.getElementById('inputEmail').disabled = true;
+
+    // Format dan Tampilkan Resume Akhir
+    const resultBox = document.getElementById('resultText');
+    const daftarPilihanTeks = dataForm.pilihanList.join(', ');
+
+    resultBox.innerHTML = `
+        <p>Hallo, nama saya <strong>${dataForm.nama}</strong>, email <strong>${dataForm.email}</strong> saya mempunyai sejumlah <strong>${dataForm.jumlah}</strong> pilihan yaitu <strong>${daftarPilihanTeks}</strong>, dan saya memilih <strong>${dataForm.pilihanTerpilih}</strong>.</p>
+    `;
+
+    // Tampilkan Tahap 5
+    document.getElementById('step5').classList.remove('hidden');
+}
 
 
