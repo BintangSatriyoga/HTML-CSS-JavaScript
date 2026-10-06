@@ -83,4 +83,24 @@ function prosesStep2() {
     document.getElementById('step3').classList.remove('hidden');
 }
 
+// Memproses Radio Button Terpilih
+function prosesStep3() {
+    const radioSelected = document.querySelector('input[name="pilihanRadio"]:checked');
+
+    if (!radioSelected) {
+        alert('Error: Silakan pilih salah satu opsi!');
+        return;
+    }
+
+    dataForm.pilihanTerpilih = radioSelected.value;
+
+    // Radio Button
+    const radios = document.querySelectorAll('input[name="pilihanRadio"]');
+    radios.forEach(radio => radio.disabled = true);
+
+    // Tampilkan Tahap 4
+    document.getElementById('step4').classList.remove('hidden');
+}
+
+
 
