@@ -136,4 +136,24 @@ function prosesStep4() {
     document.getElementById('step5').classList.remove('hidden');
 }
 
+// Reset Form untuk Mengulang Kembali
+function resetForm() {
+    dataForm = { nama: '', jumlah: 0, pilihanList: [], pilihanTerpilih: '', email: '' };
+
+    // Reset Input
+    document.getElementById('inputNama').value = '';
+    document.getElementById('inputNama').disabled = false;
+    document.getElementById('inputJml').value = '';
+    document.getElementById('inputJml').disabled = false;
+    document.getElementById('inputEmail').value = '';
+    document.getElementById('inputEmail').disabled = false;
+
+    // Sembunyikan Tahap 2 s/d 5
+    document.getElementById('step2').classList.add('hidden');
+    document.getElementById('step3').classList.add('hidden');
+    document.getElementById('step4').classList.add('hidden');
+    document.getElementById('step5').classList.add('hidden');
+}
+
+
 
