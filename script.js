@@ -25,7 +25,7 @@ function prosesStep1() {
     dataForm.nama = namaInput;
     dataForm.jumlah = parseInt(jmlInput);
 
-    // Kunci Input Tahap 1
+    // Input Tahap 1
     document.getElementById('inputNama').disabled = true;
     document.getElementById('inputJml').disabled = true;
 
@@ -44,4 +44,43 @@ function prosesStep1() {
 
     document.getElementById('step2').classList.remove('hidden');
 }
+
+// Memproses Input Teks Pilihan
+function prosesStep2() {
+    const inputElements = document.querySelectorAll('.input-pilihan');
+    let tempPilihan = [];
+
+    // Error Trapping : Jika ada pilihan yang kosong
+    for (let i = 0; i < inputElements.length; i++) {
+        const val = inputElements[i].value.trim();
+        if (val === '') {
+            alert(`Error: Teks Pilihan ${i + 1} belum diisi!`);
+            return;
+        }
+        tempPilihan.push(val);
+    }
+
+    dataForm.pilihanList = tempPilihan;
+
+    // Input Tahap 2
+    inputElements.forEach(input => input.disabled = true);
+
+    // Generate Radio Button Tahap 3
+    const radioContainer = document.getElementById('radioContainer');
+    radioContainer.innerHTML = '';
+
+    dataForm.pilihanList.forEach((teks, index) => {
+        const item = document.createElement('div');
+        item.className = 'radio-item';
+        item.innerHTML = `
+            <input type="radio" id="radio_${index}" name="pilihanRadio" value="${teks}" ${index === 0 ? 'checked' : ''}>
+            <label for="radio_${index}">${teks}</label>
+        `;
+        radioContainer.appendChild(item);
+    });
+
+    // Tampilkan Tahap 3
+    document.getElementById('step3').classList.remove('hidden');
+}
+
 
